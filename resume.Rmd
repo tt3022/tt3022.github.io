@@ -1,0 +1,49 @@
+---
+title: "Thomas Tang's Resume"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+# Thomas Tang
+
+**Email:** [tangthomas44@gmail.com](mailto:tangthomas44@gmail.com)  
+**Phone:** 516-606-6933  
+**Address:** 23 Windemere Wy, Woodbury, NY
+
+## Education
+- **Columbia University** – Master of Science in Biostatistics  
+  Expected Graduation: Dec 2025
+- **Stony Brook University** – Bachelor of Science, Double Major in Applied Mathematics and Statistics & Mathematics  
+  Sep 2020 – May 2024 | GPA: 3.76 | Dean’s List (7 terms)
+
+## Technical Skills
+- **Languages:** Python (proficient), R (proficient), SAS
+- **Languages:** English (native), Mandarin (native)
+
+## Internship
+- **Wotao Health Information Technology, Suzhou, China**  
+  Data Analyst Intern, Digital Health | May 2023 – Jul 2023  
+  - Researched AI algorithms for disease detection in gerontology.
+  - Cleaned and analyzed health data from 1M+ families.
+  - Conducted exploratory analysis and regression models.
+
+## Research & Projects
+- **Performance Comparison of DQN and Double DQN for Ms. Pacman**  
+  Aug 2023 – Oct 2023  
+  - Accepted at 2023 DAI Conference.
+  - Compared and evaluated DQN models for video game performance.
+- **Comparison of Machine Learning Methods for Customer Churn Prediction**  
+  Mar 2023 – May 2023  
+  - Accepted at CONF-CDS 2023.
+  - Compared Random Forest, Decision Tree, and Naive Bayes models.
+
+## Teaching Experience
+- **Teaching Assistant – Data Analysis (AMS 315), Stony Brook University**  
+  Sep 2023 – Dec 2023
+
+## Seminars
+- **Integrated and Deep Reinforcement Learning, Oxford University**  
+  Jul 2023 – Aug 2023
+- **Modern Data Visualization, MIT**  
+  Feb 2023 – Apr 2023

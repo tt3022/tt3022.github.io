@@ -12,4 +12,16 @@ output:
 library(tidyverse)
 library(p8105.datasets)
 library(plotly)
+library(rnoaa)
+
+```
+
+```{r}
+data("ny_noaa")
+nydat_filtered <- ny_noaa %>%
+  filter(!is.na(tmax),    # Keep only records with valid max temperature
+         !is.na(tmin),    # Keep only records with valid min temperature
+         !is.na(prcp),    # Keep only records with valid precipitation
+         id == "USW00094728",  # Filter for a specific weather station
+         date >= as.Date("1990-01-01") & date <= as.Date("1990-12-31"))  # Filter for a specific time period
 ```

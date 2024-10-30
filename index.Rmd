@@ -5,7 +5,9 @@ output:
     toc: true
     toc_float: true
 ---
+# Welcome to My Website
 
-# This is Thomas's awesome website
+Hello! I'm Thomas, a graduate student at Columbia University specializing in Public Health Data Science. This website showcases my academic projects, data visualizations, and professional experience.
 
-![](https://media.giphy.com/media/drXGoW1iudhKw/giphy.gif)
+Feel free to explore my site and learn more about my work.
+To know more about me, here is the [resume](resume.html)

@@ -8,20 +8,79 @@ output:
 
 # Here are some plots
 
-```{r}
+```{r echo=TRUE, message=FALSE}
 library(tidyverse)
 library(p8105.datasets)
 library(plotly)
 library(rnoaa)
 
 ```
-
+filter the data
+```{r message=FALSE, warning=FALSE}
+weather_df <- rnoaa::meteo_pull_monitors(
+  c("USW00094728", "USW00022534", "USS0023B17S"),  
+  var = c("PRCP", "TMIN", "TMAX"),                
+  date_min = "2021-01-01",                        
+  date_max = "2022-12-31"                        
+) %>%
+  
+  mutate(
+    name = case_match(
+      id,
+      "USW00094728" ~ "CentralPark_NY",
+      "USW00022534" ~ "Molokai_HI",
+      "USS0023B17S" ~ "Waterhole_WA"
+    ),
+    tmin = tmin / 10,  # Convert to °C
+    tmax = tmax / 10   # Convert to °C
+  ) %>%
+  select(name, id, everything())
+```
+Create a scatter plot
 ```{r}
-data("ny_noaa")
-nydat_filtered <- ny_noaa %>%
-  filter(!is.na(tmax),    # Keep only records with valid max temperature
-         !is.na(tmin),    # Keep only records with valid min temperature
-         !is.na(prcp),    # Keep only records with valid precipitation
-         id == "USW00094728",  # Filter for a specific weather station
-         date >= as.Date("1990-01-01") & date <= as.Date("1990-12-31"))  # Filter for a specific time period
+weather_df <- weather_df %>%
+  mutate(
+    text_label = paste0("Station: ", name, "<br>",
+                        "Max Temp: ", tmax, "°C<br>",
+                        "Min Temp: ", tmin, "°C")
+  )
+weather_df %>%
+  plot_ly(
+    x = ~tmax, y = ~tmin, type = "scatter", mode = "markers",
+    color = ~tmax, text = ~text_label, alpha = 0.6
+  ) %>%
+  layout(
+    title = "Scatter Plot of Max Temp vs Min Temp (in °C)",
+    xaxis = list(title = "Max Temperature (°C)"),
+    yaxis = list(title = "Min Temperature (°C)")
+  )
+```
+
+create a box plot
+```{r warning=FALSE}
+weather_df %>%
+  plot_ly(
+    x = ~name, y = ~tmax, type = "box", color = ~name
+  ) %>%
+  layout(
+    title = "Box Plot of Max Temperature by Station",
+    xaxis = list(title = "Station Name"),
+    yaxis = list(title = "Max Temperature (°C)")
+  )
+```
+
+create a bar plot
+```{r warning=FALSE}
+weather_df %>%
+  mutate(tmax_bin = cut(tmax, breaks = seq(floor(min(tmax, na.rm = TRUE)), ceiling(max(tmax, na.rm = TRUE)), by = 2))) %>%
+  count(tmax_bin) %>%
+  plot_ly(
+    x = ~tmax_bin, y = ~n, type = "bar",
+    text = ~paste("Count: ", n), hoverinfo = "text"
+  ) %>%
+  layout(
+    title = "Bar Plot of Max Temperature Bins",
+    xaxis = list(title = "Max Temperature (°C)"),
+    yaxis = list(title = "Count")
+  )
 ```
